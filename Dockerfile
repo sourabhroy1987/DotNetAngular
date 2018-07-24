@@ -9,7 +9,7 @@ COPY package.json .
 RUN npm install
 
 COPY . .
-RUN dotnet publish -o /publish
+RUN dotnet publish -o /publish -r linux-x64
 
 # Runtime Image Stage
 FROM microsoft/aspnetcore:2
