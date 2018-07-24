@@ -2,12 +2,13 @@
 FROM node:8 AS node-builder
 WORKDIR /src
 COPY . .
+RUN npm install
 RUN npm run webpack
 
 FROM microsoft/dotnet:2.1-sdk AS build-env
 WORKDIR /dotnetangular
 COPY --from=node-builder /src/dist/*.js  ./dist
-COPY dotnetangular.csproj .
+COPY . .
 RUN dotnet restore
 
 COPY . .
