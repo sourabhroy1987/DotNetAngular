@@ -2,7 +2,9 @@
 FROM microsoft/aspnetcore-build:2 AS build-env
 WORKDIR /dotnetangular
 COPY . .
+
 RUN npm install
+
 RUN dotnet restore
 
 RUN dotnet publish -o /publish
@@ -11,6 +13,7 @@ RUN dotnet publish -o /publish
 FROM microsoft/aspnetcore:2
 RUN curl -sL https://deb.nodesource.com/setup_8.x |  bash -
 RUN apt-get install -y build-essential nodejs
+RUN apt-get update && apt-get install -my wget gnupg
 WORKDIR /publish
 COPY --from=build-env /publish .
 ENTRYPOINT ["dotnet", "dotnetangular.dll"]
