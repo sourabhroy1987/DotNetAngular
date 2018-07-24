@@ -5,11 +5,8 @@ WORKDIR /dotnetangular
 COPY dotnetangular.csproj .
 RUN dotnet restore
 
-COPY package.json .
-RUN npm install
-
 COPY . .
-RUN dotnet publish -o /publish -r linux-x64
+RUN dotnet publish -o /publish
 
 # Runtime Image Stage
 FROM microsoft/aspnetcore:2
