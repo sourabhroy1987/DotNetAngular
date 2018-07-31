@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-dotnetangular-ingress
+  namespace: dotnetangular
+  annotations:
+    # kubernetes.io/tls-acme: "true"
+    #kubernetes.io/ingress.class: "gce"
+spec:
+  backend:
+    serviceName: my-dotnetangular-svc
+    servicePort: my-http-port

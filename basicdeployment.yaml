@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-dotnetangular-deploy
+  namespace: dotnetangular
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dotnetangular
+    spec:
+      containers:
+      - image: sourabhroy/dotnetangular
+        imagePullPolicy: Always
+        name: dotnetangular
+        ports:
+        - containerPort: 80
